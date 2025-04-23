@@ -1,5 +1,4 @@
 <?php
-// Include the database configuration file
 require_once 'db_config.php';
 
 // Initialize variables for feedback
