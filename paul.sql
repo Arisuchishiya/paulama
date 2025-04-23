@@ -130,7 +130,7 @@ CREATE TABLE `sales` (
   `historical_product_name` varchar(255) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `amount` decimal(10,2) NOT NULL,
-  `payment_method` enum('cash','mpesa','credit') NOT NULL,
+  `payment_method` enum('cash','mpesa','bank','credit') NOT NULL,
   `description` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

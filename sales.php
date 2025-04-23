@@ -237,7 +237,7 @@
                     <label for="payment_method">Method of Payment:</label>
                     <select id="payment_method" name="payment_method" required>
                         <option value="cash">Cash</option>
-                        <option value="m_pesa">M-Pesa</option>
+                        <option value="mpesa">M-Pesa</option>
                         <option value="bank">Bank</option>
                     </select>
                 </div>

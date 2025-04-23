@@ -42,6 +42,9 @@ require_once 'db_config.php';
     <div class="main-content">
         <div class="container">
             <h2>Transaction History</h2>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search by client name, product name, or quantity" class="search-input">
+            </div>
             <a href="money.php" class="button" style="display: inline-block; margin-bottom: 20px;">Back to Money Management</a>
 
             <?php
@@ -54,7 +57,7 @@ require_once 'db_config.php';
                 $stmt = $conn->query($sql);
                 
                 if ($stmt->rowCount() > 0) {
-                    echo "<table>
+                    echo "<table id='transaction-table'>
                             <tr>
                                 <th>Date</th>
                                 <th>Client</th>
@@ -84,5 +87,100 @@ require_once 'db_config.php';
             ?>
         </div>
     </div>
+
+    <style>
+        .search-container {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+        }
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 2px;
+            border-radius: 3px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function highlightText(text, searchTerm) {
+                if (!searchTerm) return text;
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                return text.replace(regex, '<span class="highlight">$1</span>');
+            }
+
+            function search() {
+                var input = document.getElementById("search");
+                var filter = input.value.toUpperCase();
+                var table = document.getElementById("transaction-table");
+                if (!table) return;
+                
+                var tr = table.getElementsByTagName("tr");
+                var anyResults = false;
+                
+                // Start from 1 to skip header row
+                for (var i = 1; i < tr.length; i++) {
+                    var td = tr[i].getElementsByTagName("td");
+                    var found = false;
+                    
+                    // Check all columns
+                    for (var j = 0; j < td.length; j++) {
+                        if (td[j]) {
+                            var originalText = td[j].textContent || td[j].innerText;
+                            var txtValue = originalText.toUpperCase();
+                            
+                            if (txtValue.indexOf(filter) > -1) {
+                                found = true;
+                                anyResults = true;
+                                // Highlight the matching text
+                                td[j].innerHTML = highlightText(originalText, input.value);
+                            } else {
+                                // Reset to original text if no match
+                                td[j].textContent = originalText;
+                            }
+                        }
+                    }
+                    
+                    tr[i].style.display = found ? "" : "none";
+                }
+
+                // Show/hide "No results" message
+                var noResultsMsg = document.getElementById("no-results");
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement("p");
+                    noResultsMsg.id = "no-results";
+                    noResultsMsg.style.textAlign = "center";
+                    noResultsMsg.style.padding = "10px";
+                    noResultsMsg.style.color = "#666";
+                    table.parentNode.insertBefore(noResultsMsg, table.nextSibling);
+                }
+                noResultsMsg.textContent = !anyResults && filter.length > 0 ? "No matching transactions found" : "";
+            }
+
+            var searchInput = document.getElementById("search");
+            if (searchInput) {
+                // Handle both typing and Enter key
+                searchInput.addEventListener("input", search);
+                searchInput.addEventListener("keypress", function(e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        search();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

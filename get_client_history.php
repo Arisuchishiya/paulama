@@ -48,7 +48,7 @@ if (isset($_GET['client_id'])) {
                     echo "<td>" . 
                         ($sale['payment_method'] == 'cash' ? 'Cash' : 
                         ($sale['payment_method'] == 'bank' ? 'Bank' : 
-                        ($sale['payment_method'] == 'm_pesa' ? 'M-Pesa' : 
+                        ($sale['payment_method'] == 'mpesa' ? 'M-Pesa' : 
                         ucfirst($sale['payment_method'])))) . 
                     "</td>";
                     echo "</tr>";

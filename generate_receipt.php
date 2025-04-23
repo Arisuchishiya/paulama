@@ -275,8 +275,8 @@ try {
                 <div class="bill-to-section">
                     <div class="section-title">Bill To</div>
                     <p>' . htmlspecialchars($sale['client_name']) . '</p>
-                    <p>Phone: ' . htmlspecialchars($sale['phone']) . '</p>
-                    <p>Email: ' . htmlspecialchars($sale['email']) . '</p>
+                <p>Phone: ' . htmlspecialchars($sale['phone']) . '</p>
+                <p>Email: ' . htmlspecialchars($sale['email']) . '</p>
                 </div>
             </div>
 

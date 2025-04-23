@@ -136,18 +136,20 @@ if (isset($_POST['delete_client'])) {
                                 <td>" . htmlspecialchars($row["phone"]) . "</td>
                                 <td>" . htmlspecialchars($row["email"]) . "</td>
                                 <td>
-                                    <form action='' method='post' style='display: inline;'>
-                                        <input type='hidden' name='client_id' value='" . $row["id"] . "'>
-                                        <button type='submit' name='delete_client' class='delete-btn' 
-                                                onclick='return confirm(\"Are you sure you want to delete this client?\");'
-                                                style='background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;'>
-                                            Delete
+                                    <div style='display: flex; gap: 10px;'>
+                                        <form action='' method='post' style='margin: 0;'>
+                                            <input type='hidden' name='client_id' value='" . $row["id"] . "'>
+                                            <button type='submit' name='delete_client' class='delete-btn' 
+                                                    onclick='return confirm(\"Are you sure you want to delete this client?\");'
+                                                    style='background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;'>
+                                                <i class='fas fa-trash'></i> Delete
+                                            </button>
+                                        </form>
+                                        <button onclick='viewHistory(" . $row["id"] . ")' 
+                                                style='background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;'>
+                                            <i class='fas fa-history'></i> View History
                                         </button>
-                                    </form>
-                                    <button onclick='viewHistory(" . $row["id"] . ")' 
-                                            style='background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-left: 5px;'>
-                                        View History
-                                    </button>
+                                    </div>
                                 </td>
                             </tr>";
                     }
