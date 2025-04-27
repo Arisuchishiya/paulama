@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2025 at 01:18 PM
+-- Generation Time: Apr 27, 2025 at 01:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,12 +40,7 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `client_name`, `phone`, `email`, `created_at`) VALUES
-(1, 'kenah', '0714262934', 'kenedykiprotich00@gmail.com', '2025-03-28 11:01:27'),
-(3, 'dede', '0714262933', 'AS310005524@kisiiuniversity.ac.ke', '2025-03-28 15:17:29'),
-(5, 'Kennedy', '0714262937', 'tbag9934@gmail.com', '2025-03-28 20:16:04'),
-(8, 'william', '0734567894', 'hepax43294@kindomd.com', '2025-04-18 10:12:53'),
-(9, 'kilpog', '0734567896', 'kenedykioprotich00@gmail.com', '2025-04-18 10:41:19'),
-(10, 'diss', '0756789099', 'kennedykiprotich00@gmail.com', '2025-04-18 10:55:20');
+(13, 'Kennedy Kiprotich', '0714262934', 'tbag4934@gmail.com', '2025-04-18 20:31:41');
 
 -- --------------------------------------------------------
 
@@ -66,14 +61,6 @@ CREATE TABLE `debts` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `debts`
---
-
-INSERT INTO `debts` (`id`, `retailer_id`, `sale_id`, `amount`, `paid_amount`, `payment_method`, `paid_date`, `payment_status`, `description`, `created_at`) VALUES
-(11, 1, NULL, 4000.00, 4000.00, 'cash', '2025-04-02 08:35:28', 'paid', '', '2025-04-02 08:29:35'),
-(12, 1, NULL, 4000.00, 4000.00, 'bank', '2025-04-02 08:37:42', 'paid', '', '2025-04-02 08:36:15');
-
 -- --------------------------------------------------------
 
 --
@@ -91,8 +78,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `price`) VALUES
-(1, 'broilers', 4000.00),
-(2, 'chicks', 1000.00);
+(4, 'chicks', 50.00);
 
 -- --------------------------------------------------------
 
@@ -135,52 +121,19 @@ CREATE TABLE `sales` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `sales`
---
-
-INSERT INTO `sales` (`id`, `client_id`, `product_id`, `historical_product_name`, `quantity`, `amount`, `payment_method`, `description`, `created_at`) VALUES
-(19, 1, 1, NULL, 1, 4000.00, 'cash', NULL, '2025-04-02 08:35:13'),
-(20, NULL, NULL, NULL, NULL, -4000.00, 'cash', 'Debt payment for retailer ID: 1', '2025-04-02 08:35:28'),
-(21, 1, 1, NULL, 5, 20000.00, 'cash', NULL, '2025-04-02 08:35:51'),
-(22, NULL, NULL, NULL, NULL, -4000.00, 'cash', 'Debt payment for retailer ID: 1', '2025-04-02 08:37:01'),
-(23, NULL, NULL, NULL, NULL, -4000.00, '', 'Debt payment for retailer ID: 1', '2025-04-02 08:37:42'),
-(24, 5, 2, NULL, 3, 3000.00, '', NULL, '2025-04-07 16:50:32'),
-(25, 8, 1, NULL, 6, 24000.00, '', NULL, '2025-04-18 10:13:11'),
-(26, 3, 2, NULL, 2, 2000.00, '', NULL, '2025-04-18 10:24:59'),
-(27, 1, 1, NULL, 5, 20000.00, '', NULL, '2025-04-18 10:30:17'),
-(28, 8, 1, NULL, 9, 36000.00, 'cash', NULL, '2025-04-18 10:32:43'),
-(29, 1, 1, NULL, 2, 8000.00, '', NULL, '2025-04-18 10:37:05'),
-(30, 1, 1, NULL, 7, 28000.00, '', NULL, '2025-04-18 10:41:38'),
-(31, 9, 1, NULL, 3, 12000.00, '', NULL, '2025-04-18 10:42:05'),
-(32, 9, 1, NULL, 2, 8000.00, '', NULL, '2025-04-18 10:45:33'),
-(33, 9, 1, NULL, 1, 4000.00, '', NULL, '2025-04-18 10:46:02'),
-(34, 8, 2, NULL, 3, 3000.00, 'cash', NULL, '2025-04-18 10:46:45'),
-(35, 8, 1, NULL, 8, 32000.00, '', NULL, '2025-04-18 10:47:43'),
-(36, 9, 1, NULL, 4, 16000.00, 'cash', NULL, '2025-04-18 10:48:14'),
-(37, 9, 1, NULL, 6, 24000.00, '', NULL, '2025-04-18 10:54:06'),
-(38, 10, 2, NULL, 2, 2000.00, '', NULL, '2025-04-18 10:55:37'),
-(39, 10, 1, NULL, 7, 28000.00, 'cash', NULL, '2025-04-18 10:56:27'),
-(40, 10, 1, NULL, 3, 12000.00, 'mpesa', NULL, '2025-04-18 11:03:38'),
-(41, 9, 1, NULL, 5, 20000.00, '', NULL, '2025-04-18 11:04:28'),
-(42, 9, 1, NULL, 4, 16000.00, '', NULL, '2025-04-18 11:08:59'),
-(43, 9, 1, NULL, 2, 8000.00, '', NULL, '2025-04-18 11:13:44'),
-(44, 3, 1, NULL, 78, 312000.00, '', NULL, '2025-04-18 11:15:25');
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `sale_items`
 --
 
-CREATE TABLE IF NOT EXISTS sale_items (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    sale_id INT NOT NULL,
-    product_name VARCHAR(255) NOT NULL,
-    quantity INT NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (sale_id) REFERENCES sales(id) ON DELETE CASCADE
-);
+CREATE TABLE `sale_items` (
+  `id` int(11) NOT NULL,
+  `sale_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -190,3 +143,109 @@ CREATE TABLE IF NOT EXISTS sale_items (
 -- Indexes for table `clients`
 --
 ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `phone` (`phone`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `debts`
+--
+ALTER TABLE `debts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `retailer_id` (`retailer_id`),
+  ADD KEY `fk_debts_sale` (`sale_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `retailers`
+--
+ALTER TABLE `retailers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sales_client` (`client_id`),
+  ADD KEY `fk_sales_product` (`product_id`);
+
+--
+-- Indexes for table `sale_items`
+--
+ALTER TABLE `sale_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sale_id` (`sale_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `debts`
+--
+ALTER TABLE `debts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `retailers`
+--
+ALTER TABLE `retailers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+
+--
+-- AUTO_INCREMENT for table `sale_items`
+--
+ALTER TABLE `sale_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `debts`
+--
+ALTER TABLE `debts`
+  ADD CONSTRAINT `fk_debts_sale` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sales`
+--
+ALTER TABLE `sales`
+  ADD CONSTRAINT `fk_sales_client` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sales_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sale_items`
+--
+ALTER TABLE `sale_items`
+  ADD CONSTRAINT `sale_items_ibfk_1` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
